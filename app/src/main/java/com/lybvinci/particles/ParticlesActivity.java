@@ -1,5 +1,6 @@
 package com.lybvinci.particles;
 
+import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.ConfigurationInfo;
@@ -33,6 +34,31 @@ public class ParticlesActivity extends AppCompatActivity {
             mSurfaceView.setEGLContextClientVersion(2);
             ariHockeyRenderer = new ParticlesRenderer(this);
             mSurfaceView.setRenderer(ariHockeyRenderer);
+            mSurfaceView.setOnTouchListener(new View.OnTouchListener() {
+                float previousX, previousY;
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (null != event) {
+                        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                            previousX = event.getX();
+                            previousY = event.getY();
+                        } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
+                            final float deltaX = event.getX() - previousX;
+                            final float deltaY = event.getY() - previousY;
+                            previousX = event.getX();
+                            previousY = event.getY();
+                            mSurfaceView.queueEvent(new Runnable() {
+                                @Override
+                                public void run() {
+                                   ariHockeyRenderer.handleTouchDrag(deltaX, deltaY);
+                                }
+                            });
+                        }
+                        return true;
+                    }
+                    return false;
+                }
+            });
             renderSet = true;
         } else {
             Toast.makeText(this, "不支持es2", Toast.LENGTH_SHORT).show();
