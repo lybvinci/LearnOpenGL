@@ -1,6 +1,6 @@
-package com.lybvinci.learnopengl.data;
+package com.lybvinci.particles.data;
 
-import static com.lybvinci.learnopengl.Constants.BYTES_PER_FLOAT;
+import static com.lybvinci.particles.Constants.BYTES_PER_FLOAT;
 
 import android.opengl.GLES20;
 
@@ -22,6 +22,12 @@ public class VertexArray {
         floatBuffer.position(dataOffset);
         GLES20.glVertexAttribPointer(attributeLocation, componentCount, GLES20.GL_FLOAT, false, stride, floatBuffer);
         GLES20.glEnableVertexAttribArray(attributeLocation);
+        floatBuffer.position(0);
+    }
+
+    public void updateBuffer(float[] vertexData, int start, int count) {
+        floatBuffer.position(start);
+        floatBuffer.put(vertexData, start, count);
         floatBuffer.position(0);
     }
 }

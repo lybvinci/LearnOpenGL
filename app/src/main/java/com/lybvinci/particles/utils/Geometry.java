@@ -1,4 +1,4 @@
-package com.lybvinci.learnopengl.utils;
+package com.lybvinci.particles.utils;
 
 public class Geometry {
 

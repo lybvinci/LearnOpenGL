@@ -1,4 +1,4 @@
-package com.lybvinci.learnopengl;
+package com.lybvinci.particles;
 
 import org.junit.Test;
 

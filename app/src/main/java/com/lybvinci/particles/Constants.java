@@ -1,4 +1,4 @@
-package com.lybvinci.learnopengl;
+package com.lybvinci.particles;
 
 public class Constants {
     public static final int BYTES_PER_FLOAT = 4;

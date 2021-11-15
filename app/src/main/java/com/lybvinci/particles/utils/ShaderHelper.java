@@ -1,4 +1,4 @@
-package com.lybvinci.learnopengl.utils;
+package com.lybvinci.particles.utils;
 
 import static android.opengl.GLES20.GL_VERTEX_SHADER;
 
